@@ -165,7 +165,7 @@ def Is_important(Pn,Min,Max,Mode,attrs):
 
     for i in  6,7,8,9,11,12,13,14,15,16: # the selected features
     
-        if (attrs[i-1]>=Max[i-1]-2):
+        if (attrs[i-1]>=Max[i-1]-2): # This condition has been tested in our article, but you can change it depending on your dataset and clustering purpose.
             near=near+1 
             
     if far>=1 or near>=1: flag=True       
@@ -248,7 +248,9 @@ def main():
         clustersDB =clustering.labels_
         
 #------------------------------------------------------
-        Max=[15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,]
+        # The Max, Avrg, and Mode are previously extracted from the dataset. These values can be tested to decide the Is-Important condition. In our case we used
+        # the just the Max value.
+	Max=[15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,	15,]
         Avrg=[	4.02355,	7.0355,	5.12185,	5.37245,	3.50585,	6.8976,	7.50045,	4.6286,	5.17865,	8.28205,	6.454,	7.929,	3.0461,	8.33885,	3.69175,	7.8012]
         Mode=[-59,	-56,	-56,	-59,	-64,	-87,	-85] 
         Data_size=len(X)

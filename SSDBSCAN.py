@@ -266,11 +266,20 @@ def main():
         clusterer.fit(X)
         clustersH =clusterer.labels_
 #----------------------------------------------------
-        line='HDBSCAN vmeasure ,'+str(v_measure_score(OriginalClasses, clustersH ))
+       
+	line=str(eps)+', HDBSCAN silhouette_score ,'+str(silhouette_score(X, clustersH ))
+	line=line+'\n'+'HDBSCAN vmeasure ,'+str(v_measure_score(OriginalClasses, clustersH ))
+        line=line+'\n'+'HDBSCAN ARI'+str(adjusted_rand_score(OriginalClasses,clustersH))
+	line=line+'\n-------------------'
+        line=line+'\n'+str(eps)+', DBSCAN silhouette_score ,'+str(silhouette_score(X, clustersDB )) 
+	line=line+'\n'+'DBSCAN v_measure ,'+str(v_measure_score(OriginalClasses, clustersDB ))    
+        line=line+'\n'+'DBSCAN ARI'+str(adjusted_rand_score(OriginalClasses,clustersDB))
+        line=line+'\n-------------------'
         line=line+'\n'+str(eps)+', SSDBSCAN silhouette_score ,'+str(silhouette_score(X, clusters )) 
+	line=line+'\n'+'SSDBSCAN v_measure ,'+str(v_measure_score(OriginalClasses, clusters ))    
         line=line+'\n'+'SSDBSCAN ARI'+str(adjusted_rand_score(OriginalClasses,clusters))
-        line=line+'\n'+str(eps)+', HDBSCAN silhouette_score ,'+str(silhouette_score(X, clustersH ))
-        line=line+'\n'+'HDBSCAN ARI'+str(adjusted_rand_score(OriginalClasses,clustersH))+'\n-------------------'
+        line=line+'\n-------------------'
+       
         print (line)
         
 
